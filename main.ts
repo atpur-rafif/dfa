@@ -1,5 +1,5 @@
 import { DFA } from "./src/DFA.ts";
-import { createDistingusishableTable } from "./src/Distinguishable.ts";
+import { createDistingusishableTable as createDistinguishableTable } from "./src/Distinguishable.ts";
 
 ;export const L = new DFA(
     ["0", "1"] as const,
@@ -23,11 +23,11 @@ export const M = new DFA(
     ["C", "F", "I"]
 );
 
-const resL = createDistingusishableTable(L);
+const resL = createDistinguishableTable(L);
 console.log(resL);
 
 console.log("\n");
 
-const resM = createDistingusishableTable(M);
+const resM = createDistinguishableTable(M);
 console.log(resM);
 
