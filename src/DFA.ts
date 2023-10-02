@@ -14,6 +14,7 @@ export class DFA<
     deltaFunction: DFAFunction<C, S>;
     startState: S[number];
     finalState: (S[number])[];
+    finalStateSet: Set<S[number]>;
     stateIndex: {
         [K in S[number]]: number
     } = {} as any;
@@ -30,6 +31,7 @@ export class DFA<
         this.deltaFunction = deltaFunction;
         this.startState = startState;
         this.finalState = finalState;
+        this.finalStateSet = new Set(finalState);
 
         for(let i = 0; i < state.length; ++i){
             this.stateIndex[state[i]] = i;
