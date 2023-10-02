@@ -1,5 +1,5 @@
 import { DFA } from "./src/DFA.ts";
-import { L } from "./src/Declaration.ts";
+import { L, M } from "./src/Declaration.ts";
 import { SetPair } from "./src/SetPair.ts";
 
 function createDistingusishableTable<
@@ -22,7 +22,6 @@ function createDistingusishableTable<
             ) table.add(p, q);
         }
     }
-    console.log(table.toArray())
 
     // Recursive case
     while(true){
@@ -47,7 +46,22 @@ function createDistingusishableTable<
         if(!b) break;
     }
 
-    console.log(table.toArray())
+    for(let i = 1; i < stateCount; ++i){
+        let s = L.getStateByIndex(i) + " ";
+        for(let j = 0; j < Math.min(stateCount - 1, i); ++j){
+            const p = L.getStateByIndex(i);
+            const q = L.getStateByIndex(j);
+            if(table.has(p, q)) s += "x ";
+            else s += "  ";
+        }
+        console.log(s);
+    }
+
+    let s = "  "
+    for(let i = 0; i < stateCount - 1; ++i){
+        s += L.getStateByIndex(i) + " ";
+    }
+    console.log(s);
 }
 
-createDistingusishableTable(L);
+createDistingusishableTable(M);
