@@ -5,7 +5,7 @@ export const L = new DFA(
     ["A", "B"] as const,
     {
         "0": ["A", "A"],
-        "1": ["A", "A"]
+        "1": ["B", "B"]
     },
     "A",
     ["B", "A"]
