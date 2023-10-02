@@ -1,16 +1,14 @@
 import { DFA } from "./src/DFA.ts";
 import { L } from "./src/Declaration.ts";
+import { SetPair } from "./src/SetPair.ts";
 
 function createDistingusishableTable<
     C extends readonly string[], 
     S extends readonly string[]
 >(L: DFA<C, S>){
-    const table:{
-        [K in S[number]]?: {
-            [L in S[number]]?: boolean
-        }
-    } = {};
+    const table: SetPair<S[number]> = new SetPair();
 
+    const charCount = L.character.length;
     const stateCount = L.state.length;
     const finalState = L.finalStateSet;
 
@@ -21,18 +19,35 @@ function createDistingusishableTable<
             const q = L.getStateByIndex(j);
             if(
                 finalState.has(p) != finalState.has(q)
-            ){
-                if(!table[p]) table[p] = {};
-                if(!table[q]) table[q] = {};
-                table[p][q] = true;
-                table[q][p] = true;
-            }
+            ) table.add(p, q);
         }
     }
+    console.log(table.toArray())
 
     // Recursive case
+    while(true){
+        let b = false;
+        for(let i = 0; i < stateCount - 1; ++i){
+            for(let j = 1; j < stateCount; ++j){
+                const p = L.getStateByIndex(i);
+                const q = L.getStateByIndex(j);
+                if(table.has(p, q)) continue;
 
-    console.log(table)
+                for(let k = 0; k < charCount; ++k){
+                    const c = L.character[k];
+                    const r = L.next(p, c);
+                    const s = L.next(q, c);
+                    if(table.has(r, s) && !b){
+                        table.add(p, q);
+                        b = true;
+                    };
+                }
+            }
+        }
+        if(!b) break;
+    }
+
+    console.log(table.toArray())
 }
 
 createDistingusishableTable(L);

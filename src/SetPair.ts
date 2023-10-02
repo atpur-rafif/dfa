@@ -1,7 +1,7 @@
-class SetPair<T extends any[]>{
+export class SetPair<T extends string>{
     private value: {
-        [K in T[number]]?: {
-            [J in T[number]]?: boolean
+        [K in T]?: {
+            [J in T]?: boolean
         }
     } = {};
 
@@ -10,6 +10,12 @@ class SetPair<T extends any[]>{
         if(!this.value[q]) this.value[q] = {};
         this.value[p][q] = true;
         this.value[q][p] = true;
+    }
+
+    has(p: T, q: T){
+        if(this.value[p] && this.value[p][q]) return true;
+        else if(this.value[q] && this.value[q][p]) return true;
+        else return false;
     }
 
     remove(p: T, q: T){

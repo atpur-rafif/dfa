@@ -2,7 +2,7 @@ type DFAFunction<
     C extends readonly string[],
     S extends readonly string[]
 > = {
-    [K in C[keyof C] as string]: (S[keyof S])[]
+    [K in C[number] as string]: (S[number])[]
 }
 
 export class DFA<
@@ -47,8 +47,8 @@ export class DFA<
     }
 
     next(currentState: S[number], inputChar: C[number]){
-        let i = inputChar as any;
-        let j = this.getIndexByState(currentState) as any;
+        let i = inputChar;
+        let j = this.getIndexByState(currentState);
         return this.deltaFunction[i][j];
     }
 }
