@@ -1,5 +1,5 @@
 import { DFA } from "./src/DFA.ts";
-import { L } from "./src/declaration.ts";
+import { L } from "./src/Declaration.ts";
 
 function createDistingusishableTable<
     C extends readonly string[], 
@@ -32,7 +32,7 @@ function createDistingusishableTable<
 
     // Recursive case
 
-    console.log(table);
+    console.log(table)
 }
 
 createDistingusishableTable(L);

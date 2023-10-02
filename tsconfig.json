@@ -2,6 +2,6 @@
     "compilerOptions": {
         "noEmit": true,
         "allowImportingTsExtensions": true,
-        "lib": ["ES2016", "dom"]
+        "lib": ["ES2020", "dom"]
     }
 }
