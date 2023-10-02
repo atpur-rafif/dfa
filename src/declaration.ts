@@ -4,9 +4,9 @@ export const L = new DFA(
     ["0", "1"] as const,
     ["A", "B"] as const,
     {
-        "0": ["A", "A"],
+        "0": ["A", "B"],
         "1": ["B", "B"]
     },
     "A",
-    ["B", "A"]
+    ["B"]
 );

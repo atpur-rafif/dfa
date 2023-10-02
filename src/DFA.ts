@@ -6,8 +6,8 @@ type DFAFunction<
 }
 
 export class DFA<
-    C extends readonly string[], 
-    S extends readonly string[]
+    C extends readonly string[] = string[], 
+    S extends readonly string[] = string[]
 >{
     character: C;
     state: S;
@@ -36,13 +36,17 @@ export class DFA<
         }
     }
 
-    private getStateIndex(state: S[number]){
+    getIndexByState(state: S[number]){
         return this.stateIndex[state];
+    }
+
+    getStateByIndex(i: number){
+        return this.state[i];
     }
 
     next(currentState: S[number], inputChar: C[number]){
         let i = inputChar as any;
-        let j = this.getStateIndex(currentState) as any;
+        let j = this.getIndexByState(currentState) as any;
         return this.deltaFunction[i][j];
     }
 }
