@@ -1,3 +1,3 @@
-import { L } from "./declaration.ts";
+import { L } from "./src/declaration.ts";
 
 console.log(L)
